@@ -12,6 +12,9 @@ custom:
     packRequirements: false
   pythonRequirements:
     dockerizePip: non-linux
+    slim: true
+    slimPatterns:
+      - '**/*.egg-info*'
 
 provider:
   name: aws
@@ -20,7 +23,7 @@ provider:
 
 functions:
   app:
-    handler: wsgi.handler
+    handler: wsgi_handler.handler
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
