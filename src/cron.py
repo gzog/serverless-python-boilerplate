@@ -4,6 +4,7 @@ import datetime
 logger = Logger(service='cron')
 
 
+@logger.inject_lambda_context
 def run(event, context):
     current_time = datetime.datetime.now().time()
     name = context.function_name
