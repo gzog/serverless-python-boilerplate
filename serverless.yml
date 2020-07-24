@@ -9,7 +9,7 @@ plugins:
 
 custom:
   wsgi:
-    app: src.web.handler.app
+    app: src.web.app
     packRequirements: false
   pythonRequirements:
     dockerizePip: non-linux
@@ -34,11 +34,11 @@ functions:
       - http: ANY /
       - http: 'ANY {proxy+}'
   cron:
-    handler: src.crons.handler.run
+    handler: src.cron.run
     events:
       - schedule: rate(1 hour)
   worker:
-    handler: src.worker.handler.run
+    handler: src.worker.run
     events:
       - sqs: arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:serverless-python-dev-queue
 
