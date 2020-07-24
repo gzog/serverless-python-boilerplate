@@ -34,7 +34,7 @@ functions:
       - http: ANY /
       - http: 'ANY {proxy+}'
   cron:
-    handler: src.cron.handler.run
+    handler: src.crons.handler.run
     events:
       - schedule: rate(1 hour)
   worker:
