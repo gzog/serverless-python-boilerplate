@@ -8,22 +8,31 @@ plugins:
 
 custom:
   wsgi:
-    app: app.app
+    app: src.web.handler.app
     packRequirements: false
   pythonRequirements:
     dockerizePip: non-linux
     slim: true
     slimPatterns:
       - '**/*.egg-info*'
+    noDeploy:
+      - pytest
 
 provider:
   name: aws
   runtime: python3.7
   region: eu-west-1
+  memorySize: 256
+  timeout: 10
+  logRetentionInDays: 7
 
 functions:
-  app:
+  web:
     handler: wsgi_handler.handler
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
+  cron:
+    handler: src.cron.handler.run
+    events:
+      - schedule: rate(1 hour)
