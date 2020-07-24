@@ -1,10 +1,10 @@
+from aws_lambda_powertools import Logger
 import datetime
-import logging
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger = Logger()
 
 
+@logger.inject_lambda_context
 def run(event, context):
     current_time = datetime.datetime.now().time()
     name = context.function_name

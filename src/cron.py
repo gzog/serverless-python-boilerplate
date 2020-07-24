@@ -1,8 +1,7 @@
+from aws_lambda_powertools import Logger
 import datetime
-import logging
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger = Logger()
 
 
 def run(event, context):
