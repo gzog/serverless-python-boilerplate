@@ -1,7 +1,7 @@
 from aws_lambda_powertools import Logger
 import datetime
 
-logger = Logger()
+logger = Logger(service='cron')
 
 
 def run(event, context):
