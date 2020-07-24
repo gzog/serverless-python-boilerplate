@@ -3,6 +3,7 @@
 service: serverless-python
 
 plugins:
+  - serverless-pseudo-parameters
   - serverless-python-requirements
   - serverless-wsgi
 
@@ -36,3 +37,14 @@ functions:
     handler: src.cron.handler.run
     events:
       - schedule: rate(1 hour)
+  worker:
+    handler: src.worker.handler.run
+    events:
+      - sqs: arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:serverless-python-dev-queue
+
+resources:
+  Resources:
+    Queue:
+      Type: "AWS::SQS::Queue"
+      Properties:
+        QueueName: "serverless-python-dev-queue"
