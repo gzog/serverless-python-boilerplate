@@ -48,3 +48,6 @@ resources:
       Type: "AWS::SQS::Queue"
       Properties:
         QueueName: "serverless-python-dev-queue"
+        MessageRetentionPeriod: 1209600
+        MaximumMessageSize: 262144
+        VisibilityTimeout: 60
