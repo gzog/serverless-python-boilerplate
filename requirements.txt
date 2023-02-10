@@ -23,7 +23,7 @@ googleads==24.0.0
 idna==2.9
 importlib-metadata==1.6.1
 ipdb==0.13.2
-ipython==7.15.0
+ipython==8.10.0
 ipython-genutils==0.2.0
 isodate==0.6.0
 jedi==0.17.0
